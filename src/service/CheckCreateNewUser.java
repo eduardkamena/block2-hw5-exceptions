@@ -12,7 +12,7 @@ public class CheckCreateNewUser {
 
     private static void checkLogin(CreateNewUser createNewUser) {
         if (!CHECK_LOGIN_PATTERN.matcher(createNewUser.login()).matches()) {
-            throw new WrongLoginException("Логин должен содержать " +
+            throw new WrongLoginException("Логин \"" + createNewUser.login() + "\" должен содержать " +
                     "только латинские буквы, цифры и знак подчеркивания " +
                     "и быть не более 20 знаков");
         }
@@ -20,7 +20,7 @@ public class CheckCreateNewUser {
 
     private static void checkPassword(CreateNewUser createNewUser) {
         if (!CHECK_PASSWORD_PATTERN.matcher(createNewUser.password()).matches()) {
-            throw new WrongPasswordException("Пароль должен содержать " +
+            throw new WrongPasswordException("Пароль \"" + createNewUser.password() + "\" должен содержать " +
                     "только латинские буквы, цифры и знак подчеркивания " +
                     "и быть не более 20 знаков");
         }
@@ -40,7 +40,7 @@ public class CheckCreateNewUser {
             checkPassword(createNewUser);
             checkConfirmPassword(createNewUser);
         } catch (WrongLoginException | WrongPasswordException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
